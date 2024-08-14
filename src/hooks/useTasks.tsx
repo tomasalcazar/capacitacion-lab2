@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTasks, saveTasks } from '../services/api';
-import { Task } from '../types/task';
+import { Task } from '../types';
 
 export const useTasks = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -34,5 +34,13 @@ export const useTasks = () => {
         saveTasks(updatedTasks);
     };
 
-    return { tasks, addTask, toggleTask, deleteTask };
+    const editTask = (id: number, name: string) => {
+        const updatedTasks = tasks.map(task =>
+            task.id === id ? { ...task, name } : task
+        );
+        setTasks(updatedTasks);
+        saveTasks(updatedTasks);
+    };
+
+    return { tasks, addTask, toggleTask, deleteTask, editTask };
 }
