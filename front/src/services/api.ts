@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Task } from '../types';
+import { Task } from './index';
 
 const startURL: string = "http://localhost:3001/tasks/";
 

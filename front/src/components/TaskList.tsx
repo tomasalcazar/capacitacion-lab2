@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, List as MUIList, Container } from "@mui/material";
-import { useTasks } from '../hooks/useTasks';
+import { useTasks } from '../useTasks';
 import TaskItem from './TaskItem';
 import AddTask from './AddTask';
 

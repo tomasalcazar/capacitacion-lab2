@@ -59,7 +59,7 @@ app.put('/tasks/:id', (req, res) => {
     if (isDone !== undefined) itemToUpdate.isDone = isDone;
 
     console.log("Updated item: ", itemToUpdate);
-    res.status(200).json(itemToUpdate);  // Return the updated task
+    res.status(200).json(itemToUpdate);
 });
 
 app.delete('/tasks/:id', (req, res) => {
@@ -75,5 +75,5 @@ app.delete('/tasks/:id', (req, res) => {
     const deletedItem = db.splice(index, 1);
 
     console.log("Deleted item: ", deletedItem[0]);
-    res.status(200).json(deletedItem[0]);  // Return the deleted task
+    res.status(200).json(deletedItem[0]);
 });
