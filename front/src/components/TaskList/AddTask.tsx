@@ -14,7 +14,7 @@ const AddTask: React.FC<AddTaskProps> = ({onAddition}: AddTaskProps) => {
         <ListItem>
             <ListItemButton sx={{ width: '1%' }} onClick={() => {
                 onAddition(newTaskName);
-                setNewTaskName(''); // Clear the input field after adding a task
+                setNewTaskName('');
             }}>
                 <AddCircleIcon sx={{ width: '100%', color: 'green' }}/>
             </ListItemButton>

@@ -10,7 +10,7 @@ const TaskList: React.FC = () => {
     return (
         <>
             <Typography variant="h2" gutterBottom sx={{ width: '100%', px: 40, pt: 20 }} >
-                To-do-list
+                To-do List
             </Typography>
             <MUIList sx={{ width: '100%', px: 40 }} >
                 {tasks.map(item => (
