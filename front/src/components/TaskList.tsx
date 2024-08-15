@@ -8,7 +8,7 @@ const TaskList: React.FC = () => {
     const { tasks, addTask, toggleTask, deleteTask, editTask } = useTasks();
 
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" sx={{ marginTop: '40px' }}>
             <Typography variant="h3" gutterBottom>
                 To-do List
             </Typography>
