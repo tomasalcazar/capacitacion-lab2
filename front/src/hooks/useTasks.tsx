@@ -10,43 +10,40 @@ export const useTasks = () => {
     }, []);
 
     const addTask = async (name: string) => {
-        const newTask: Task = {
-            id: tasks.length + 1,
+        const newTask: Partial<Task> = {
             name,
             isDone: false
         };
-        const updatedTasks = [...tasks, newTask];
-        setTasks(updatedTasks);
-        await addTaskAPI(newTask);  // Save the new task to the server
+        const createdTask = await addTaskAPI(newTask as Task);
+        setTasks([...tasks, createdTask]);
     };
 
     const toggleTask = async (id: number) => {
-        const updatedTasks = tasks.map(task =>
-            task.id === id ? { ...task, isDone: !task.isDone } : task
-        );
-        setTasks(updatedTasks);
-        const task = updatedTasks.find(task => task.id === id);
+        const task = tasks.find(task => task.id === id);
         if (task) {
-            await updateTaskAPI(task);  // Update the task on the server
+            const updatedTask = { ...task, isDone: !task.isDone };
+            await updateTaskAPI(updatedTask);
+            setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
         }
     };
 
     const deleteTask = async (id: number) => {
-        const updatedTasks = tasks.filter(task => task.id !== id);
-        setTasks(updatedTasks);
-        await deleteTaskAPI(id.toString());  // Delete the task from the server
+        if (id !== undefined) {
+            await deleteTaskAPI(id.toString());
+            setTasks(tasks.filter(task => task.id !== id));
+        } else {
+            console.error("Attempted to delete a task with an undefined ID");
+        }
     };
 
     const editTask = async (id: number, name: string) => {
-        const updatedTasks = tasks.map(task =>
-            task.id === id ? { ...task, name } : task
-        );
-        setTasks(updatedTasks);
-        const task = updatedTasks.find(task => task.id === id);
+        const task = tasks.find(task => task.id === id);
         if (task) {
-            await updateTaskAPI(task);  // Update the task on the server
+            const updatedTask = { ...task, name };
+            await updateTaskAPI(updatedTask);
+            setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
         }
     };
 
     return { tasks, addTask, toggleTask, deleteTask, editTask };
-}
+};
