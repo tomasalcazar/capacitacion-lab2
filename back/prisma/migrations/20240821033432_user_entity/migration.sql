@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "todo" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "text" TEXT NOT NULL,
+    "mark" BOOLEAN NOT NULL DEFAULT false
+);
